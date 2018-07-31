@@ -20,6 +20,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
         #region Ctor
 
         public ManagementViewModel(
+            IMIDIService midiService,
             IAudioService audioService,
             IDictionaryService dictionaryService)
         {
@@ -27,6 +28,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
             DictionaryViewModel = new DictionaryViewModel(dictionaryService);
             OtherViewModel = new OtherViewModel();
             PointingAndSelectingViewModel = new PointingAndSelectingViewModel();
+            MIDIViewModel = new MIDIViewModel(midiService);
             SoundsViewModel = new SoundsViewModel(audioService);
             VisualsViewModel = new VisualsViewModel();
             WordsViewModel = new WordsViewModel(dictionaryService);
@@ -57,6 +59,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
         public DictionaryViewModel DictionaryViewModel { get; private set; }
         public OtherViewModel OtherViewModel { get; private set; }
         public PointingAndSelectingViewModel PointingAndSelectingViewModel { get; private set; }
+        public MIDIViewModel MIDIViewModel { get; private set; }
         public SoundsViewModel SoundsViewModel { get; private set; }
         public VisualsViewModel VisualsViewModel { get; private set; }
         public WordsViewModel WordsViewModel { get; private set; }
@@ -74,6 +77,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
             DictionaryViewModel.ApplyChanges();
             OtherViewModel.ApplyChanges();
             PointingAndSelectingViewModel.ApplyChanges();
+            MIDIViewModel.ApplyChanges();
             SoundsViewModel.ApplyChanges();
             VisualsViewModel.ApplyChanges();
             WordsViewModel.ApplyChanges();

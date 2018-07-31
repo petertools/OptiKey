@@ -22,6 +22,7 @@ namespace JuliusSweetland.OptiKey.UI.Windows
     {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        private readonly IMIDIService midiService;
         private readonly IAudioService audioService;
         private readonly IDictionaryService dictionaryService;
         private readonly IInputService inputService;
@@ -35,6 +36,7 @@ namespace JuliusSweetland.OptiKey.UI.Windows
         private readonly ICommand quitCommand;
 
         public MainWindow(
+            IMIDIService midiService,
             IAudioService audioService,
             IDictionaryService dictionaryService,
             IInputService inputService,
@@ -42,6 +44,7 @@ namespace JuliusSweetland.OptiKey.UI.Windows
         {
             InitializeComponent();
 
+            this.midiService = midiService;
             this.audioService = audioService;
             this.dictionaryService = dictionaryService;
             this.inputService = inputService;
@@ -115,6 +118,7 @@ namespace JuliusSweetland.OptiKey.UI.Windows
                 new NotificationWithServicesAndState
                 {
                     ModalWindow = modalManagementWindow,
+                    MIDIService = midiService,
                     AudioService = audioService,
                     DictionaryService = dictionaryService
                 },

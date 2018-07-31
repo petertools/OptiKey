@@ -6,6 +6,7 @@ namespace JuliusSweetland.OptiKey.Models
     public class NotificationWithServicesAndState : INotification
     {
         public bool ModalWindow { get; set; }
+        public IMIDIService MIDIService { get; set; }
         public IAudioService AudioService { get; set; }
         public IDictionaryService DictionaryService { get; set; }
 

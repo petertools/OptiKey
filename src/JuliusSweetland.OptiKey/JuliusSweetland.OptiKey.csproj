@@ -289,6 +289,7 @@
     <Compile Include="Models\ILastMouseActionStateManager.cs" />
     <Compile Include="Models\KeyboardOutputServiceState.cs" />
     <Compile Include="Models\KeyValueConverter.cs" />
+    <Compile Include="Models\MIDIMessages.cs" />
     <Compile Include="Models\XmlKeyboardModels\XmlActionKey.cs" />
     <Compile Include="Models\XmlKeyboardModels\XmlChangeKeyboardKey.cs" />
     <Compile Include="Models\XmlKeyboardModels\XmlGrid.cs" />
@@ -352,6 +353,8 @@
     <Compile Include="Services\Audio\SoundPlayerEx.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\IMIDIService.cs" />
+    <Compile Include="Services\MIDIService.cs" />
     <Compile Include="Services\Suggestions\IManagedSuggestions.cs" />
     <Compile Include="Services\Suggestions\BasicAutoComplete.cs" />
     <Compile Include="Services\Suggestions\ISuggestions.cs" />
@@ -458,6 +461,8 @@
     <Compile Include="UI\ValueConverters\WidthGreaterThanHeight.cs" />
     <Compile Include="UI\ValueConverters\LengthDividedBySpan.cs" />
     <Compile Include="UI\ValueConverters\SuggestionsPaged.cs" />
+    <Compile Include="UI\ViewModels\Management\MIDIViewModel.cs" />
+    <Compile Include="UI\Views\Keyboards\Common\DJController.xaml.cs" />
     <Compile Include="UI\ViewModels\ILookToScrollOverlayViewModel.cs" />
     <Compile Include="UI\ViewModels\Keyboards\Alpha2.cs" />
     <Compile Include="UI\ViewModels\Keyboards\CommuniKate.cs" />
@@ -747,6 +752,9 @@
     </Compile>
     <Compile Include="UI\Views\ManagementView.xaml.cs">
       <DependentUpon>ManagementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\Management\MIDIView.xaml.cs">
+      <DependentUpon>MIDIView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Views\Management\OtherView.xaml.cs">
       <DependentUpon>OtherView.xaml</DependentUpon>
@@ -1525,6 +1533,10 @@
     <Page Include="UI\Views\ManagementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\Management\MIDIView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Views\Management\OtherView.xaml">
       <Generator>MSBuild:Compile</Generator>

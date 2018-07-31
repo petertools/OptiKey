@@ -24,6 +24,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
 
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        private readonly IMIDIService midiService;
         private readonly IAudioService audioService;
         private readonly ICalibrationService calibrationService;
         private readonly IDictionaryService dictionaryService;
@@ -61,6 +62,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
         #region Ctor
 
         public MainViewModel(
+            IMIDIService midiService,
             IAudioService audioService,
             ICalibrationService calibrationService,
             IDictionaryService dictionaryService,
@@ -74,6 +76,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
             IWindowManipulationService mainWindowManipulationService,
             List<INotifyErrors> errorNotifyingServices)
         {
+            this.midiService = midiService;
             this.audioService = audioService;
             this.calibrationService = calibrationService;
             this.dictionaryService = dictionaryService;

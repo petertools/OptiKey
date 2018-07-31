@@ -144,6 +144,7 @@ namespace JuliusSweetland.OptiKey
 
                 //Create services
                 var errorNotifyingServices = new List<INotifyErrors>();
+                IMIDIService midiService = new MIDIService();
                 IAudioService audioService = new AudioService();
                 
                 IDictionaryService dictionaryService = new DictionaryService(Settings.Default.SuggestionMethod);
@@ -156,6 +157,7 @@ namespace JuliusSweetland.OptiKey
                 IInputService inputService = CreateInputService(keyStateService, dictionaryService, audioService, calibrationService, capturingStateManager, errorNotifyingServices);
                 IKeyboardOutputService keyboardOutputService = new KeyboardOutputService(keyStateService, suggestionService, publishService, dictionaryService, fireKeySelectionEvent);
                 IMouseOutputService mouseOutputService = new MouseOutputService(publishService);
+                errorNotifyingServices.Add(midiService);
                 errorNotifyingServices.Add(audioService);
                 errorNotifyingServices.Add(dictionaryService);
                 errorNotifyingServices.Add(publishService);
@@ -164,7 +166,7 @@ namespace JuliusSweetland.OptiKey
                 ReleaseKeysOnApplicationExit(keyStateService, publishService);
 
                 //Compose UI
-                var mainWindow = new MainWindow(audioService, dictionaryService, inputService, keyStateService);
+                var mainWindow = new MainWindow(midiService, audioService, dictionaryService, inputService, keyStateService);
                 IWindowManipulationService mainWindowManipulationService = CreateMainWindowManipulationService(mainWindow);
                 errorNotifyingServices.Add(mainWindowManipulationService);
                 mainWindow.WindowManipulationService = mainWindowManipulationService;
@@ -173,7 +175,7 @@ namespace JuliusSweetland.OptiKey
 				mainWindow.Closing += dictionaryService.OnAppClosing;
 
 				mainViewModel = new MainViewModel(
-                    audioService, calibrationService, dictionaryService, keyStateService,
+                    midiService, audioService, calibrationService, dictionaryService, keyStateService,
                     suggestionService, capturingStateManager, lastMouseActionStateManager,
                     inputService, keyboardOutputService, mouseOutputService, mainWindowManipulationService, errorNotifyingServices);
 

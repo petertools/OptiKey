@@ -627,6 +627,10 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                 case FunctionKeys.SelectVoice:
                     SelectVoice(singleKeyValue.String);
                     break;
+
+                case FunctionKeys.MIDIMessage:
+                    SendMIDIMessage(singleKeyValue.String);
+                    break;
             }
         }
 
@@ -2320,6 +2324,11 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
             }
 
             NavigateToMenu();
+        }
+
+        private void SendMIDIMessage(string message)
+        {
+            midiService.SendMessage(1, 1, 1);
         }
 
         private void ShowMore()

@@ -12,13 +12,14 @@ namespace JuliusSweetland.OptiKey.UI.Windows
     public partial class ManagementWindow : MetroWindow
     {
         public ManagementWindow(
+            IMIDIService midiService,
             IAudioService audioService,
             IDictionaryService dictionaryService)
         {
             InitializeComponent();
 
             //Instantiate ManagementViewModel and set as DataContext of ManagementView
-            var managementViewModel = new ManagementViewModel(audioService, dictionaryService);
+            var managementViewModel = new ManagementViewModel(midiService, audioService, dictionaryService);
             this.ManagementView.DataContext = managementViewModel;
         }
     }

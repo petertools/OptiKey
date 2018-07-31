@@ -228,6 +228,7 @@
         TurkishTurkey,
         WebBrowsingKeyboard,
         DJControllerKeyboard,
+        MIDIMessage,
         YesQuestionResult
     }
 }

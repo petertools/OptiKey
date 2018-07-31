@@ -16,7 +16,7 @@ namespace JuliusSweetland.OptiKey.UnitTests.UI.ViewModels.ManagementViewModelSpe
 
         protected override void Act()
         {
-            ManagementViewModel = new ManagementViewModel(AudioService.Object, DictionaryService.Object);
+            ManagementViewModel = new ManagementViewModel(MIDIService.Object, AudioService.Object, DictionaryService.Object);
         }
 
         [Test]
@@ -25,6 +25,7 @@ namespace JuliusSweetland.OptiKey.UnitTests.UI.ViewModels.ManagementViewModelSpe
             Assert.IsNotNull(ManagementViewModel.DictionaryViewModel);
             Assert.IsNotNull(ManagementViewModel.OtherViewModel);
             Assert.IsNotNull(ManagementViewModel.PointingAndSelectingViewModel);
+            Assert.IsNotNull(ManagementViewModel.MIDIViewModel);
             Assert.IsNotNull(ManagementViewModel.SoundsViewModel);
             Assert.IsNotNull(ManagementViewModel.VisualsViewModel);
             Assert.IsNotNull(ManagementViewModel.WordsViewModel);

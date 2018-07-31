@@ -10,6 +10,7 @@ namespace JuliusSweetland.OptiKey.UnitTests.UI.ViewModels.MainViewModelSpecifica
     public abstract class MainViewModelTestBase : TestBase
     {
         protected MainViewModel MainViewModel { get; set; }
+        protected Mock<IMIDIService> MIDIService { get; private set; }
         protected Mock<IAudioService> AudioService { get; private set; }
         protected Mock<ICalibrationService> CalibrationService { get; private set; }
         protected Mock<ICapturingStateManager> CapturingStateManager { get; private set; }
@@ -29,6 +30,7 @@ namespace JuliusSweetland.OptiKey.UnitTests.UI.ViewModels.MainViewModelSpecifica
 
         protected override void Arrange()
         {
+            MIDIService = new Mock<IMIDIService>();
             AudioService = new Mock<IAudioService>();
             CalibrationService = new Mock<ICalibrationService>();
             CapturingStateManager = new Mock<ICapturingStateManager>();
@@ -48,7 +50,7 @@ namespace JuliusSweetland.OptiKey.UnitTests.UI.ViewModels.MainViewModelSpecifica
 
             if(ShouldConstruct)
             {
-                MainViewModel = new MainViewModel(AudioService.Object, CalibrationService.Object, DictionaryService.Object,
+                MainViewModel = new MainViewModel(MIDIService.Object, AudioService.Object, CalibrationService.Object, DictionaryService.Object,
                     KeyStateService.Object, SuggestionService.Object, CapturingStateManager.Object, LastMouseActionStateManager.Object,
                     InputService.Object, KeyboardOutputService.Object, MouseOutputService.Object, MainWindowManipulationService.Object,
                     ErrorNotifyingServices);

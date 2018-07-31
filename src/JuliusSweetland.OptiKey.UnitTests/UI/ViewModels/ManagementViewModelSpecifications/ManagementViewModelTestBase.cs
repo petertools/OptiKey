@@ -7,6 +7,7 @@ namespace JuliusSweetland.OptiKey.UnitTests.UI.ViewModels.ManagementViewModelSpe
     public abstract class ManagementViewModelTestBase : TestBase
     {
         protected ManagementViewModel ManagementViewModel { get; set; }
+        protected Mock<IMIDIService> MIDIService { get; private set; }
         protected Mock<IAudioService> AudioService { get; private set; }
         protected Mock<IDictionaryService> DictionaryService { get; private set; }
 
@@ -19,7 +20,7 @@ namespace JuliusSweetland.OptiKey.UnitTests.UI.ViewModels.ManagementViewModelSpe
 
             if (ShouldConstruct)
             {
-                ManagementViewModel = new ManagementViewModel(AudioService.Object, DictionaryService.Object);
+                ManagementViewModel = new ManagementViewModel(MIDIService.Object, AudioService.Object, DictionaryService.Object);
             }
         }
     }

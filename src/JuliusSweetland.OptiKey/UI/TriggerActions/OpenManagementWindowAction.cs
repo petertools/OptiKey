@@ -28,7 +28,7 @@ namespace JuliusSweetland.OptiKey.UI.TriggerActions
                     throw new ApplicationException(Resources.REQUIRED_SERVICES_NOT_PASSED_TO_MANAGEMENT_WINDOW);
                 }
 
-                var childWindow = new ManagementWindow(notificationWithServicesAndState.AudioService, notificationWithServicesAndState.DictionaryService);
+                var childWindow = new ManagementWindow(notificationWithServicesAndState.MIDIService, notificationWithServicesAndState.AudioService, notificationWithServicesAndState.DictionaryService);
                 
                 EventHandler closeHandler = null;
                 closeHandler = (sender, e) =>

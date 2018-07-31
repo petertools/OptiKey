@@ -47,15 +47,15 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels.Management
         private string inputDevice;
         public string InputDevice
         {
-            get { return inputDevice; }
-            set { SetProperty(ref inputDevice, value); }
+            get { return midiService.SelectedInputDevice != -1 ? InputDevices[midiService.SelectedInputDevice] : ""; }
+            set { midiService.SelectedInputDevice = InputDevices.IndexOf(value); }
         }
 
         private string outputDevice;
         public string OutputDevice
         {
-            get { return outputDevice; }
-            set { SetProperty(ref outputDevice, value); }
+            get { return midiService.SelectedOutputDevice != -1 ? OutputDevices[midiService.SelectedOutputDevice] : ""; }
+            set { midiService.SelectedOutputDevice = OutputDevices.IndexOf(value); }
         }
 
         public DelegateCommand InfoSoundPlayCommand { get; private set; }

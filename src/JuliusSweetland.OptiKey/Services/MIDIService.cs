@@ -17,25 +17,45 @@ namespace JuliusSweetland.OptiKey.Services
 {
     public class MIDIService : IMIDIService
     {
-        #region Constants
+        private int selectedInputDevice = -1;
+        private MidiIn midiInputDevice = null;
 
-        private const string BassRegistrationEmail = "optikeyfeedback@gmail.com";
-        private const string BassRegistrationKey = "2X24252025152222";
+        public int SelectedInputDevice
+        {
+            get
+            {
+                return selectedInputDevice;
+            }
 
-        #endregion
+            set
+            {
+                if (selectedInputDevice != value)
+                {
+                    selectedInputDevice = value;
+                    midiInputDevice = new MidiIn(selectedInputDevice);
+                }
+            }
+        }
 
-        #region Private Member Vars
+        private int selectedOutputDevice = -1;
+        private MidiOut midiOutputDevice = null;
 
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
-        private readonly SpeechSynthesizer speechSynthesiser;
-        private readonly SoundPlayerEx maryTtsPlayer;
+        public int SelectedOutputDevice
+        {
+            get
+            {
+                return selectedOutputDevice;
+            }
 
-        private readonly object speakCompletedLock = new object();
-        private EventHandler<SpeakCompletedEventArgs> onSpeakCompleted;
-        private EventHandler onMaryTtsSpeakCompleted;
-
-        #endregion
+            set
+            {
+                if (selectedOutputDevice != value)
+                {
+                    selectedOutputDevice = value;
+                    midiOutputDevice = new MidiOut(selectedOutputDevice);
+                }
+            }
+        }
 
         #region Events
 
@@ -47,11 +67,6 @@ namespace JuliusSweetland.OptiKey.Services
 
         public MIDIService()
         {
-            speechSynthesiser = new SpeechSynthesizer();
-            maryTtsPlayer = new SoundPlayerEx();
-            BassNet.Registration(BassRegistrationEmail, BassRegistrationKey);
-            Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_DEFAULT, IntPtr.Zero);
-            Application.Current.Exit += (sender, args) => Bass.BASS_Free();
         }
 
         #endregion
@@ -80,21 +95,18 @@ namespace JuliusSweetland.OptiKey.Services
 
         public void SendMessage(Byte channel, Byte first, Byte second)
         {
-            Log.Debug("Sending MIDI message Ch: " + channel + " - First:" + first + " - Second: " + second);
+            var noteOnEvent = new NoteOnEvent(0, channel, first, second, 50);
+            midiOutputDevice.Send(noteOnEvent.GetAsShortMessage());
         }
 
         private void PublishError(object sender, Exception ex)
         {
-            Log.Error("Publishing Error event (if there are any listeners)", ex);
+            //Log.Error("Publishing Error event (if there are any listeners)", ex);
             if (Error != null)
             {
                 Error(sender, ex);
             }
         }
-
-        #endregion
-
-        #region Private methods
 
         #endregion
     }

@@ -7,6 +7,10 @@ namespace JuliusSweetland.OptiKey.Services
     {
         List<string> GetAvailableInputDevices();
         List<string> GetAvailableOutputDevices();
+
+        int SelectedInputDevice { get; set; }
+        int SelectedOutputDevice { get; set; }
+
         void SendMessage(Byte channel, Byte first, Byte second);
     }
 }

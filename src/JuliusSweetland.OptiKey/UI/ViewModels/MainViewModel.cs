@@ -427,6 +427,10 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                     Keyboard = new WebBrowsing();
                     break;
 
+                case Enums.Keyboards.DJController:
+                    Keyboard = new DJController();
+                    break;
+
                 default:
                     Log.ErrorFormat("Cannot load keyboard: {0}, this is not a valid StartupKeyboard", 
                         Settings.Default.StartupKeyboard);

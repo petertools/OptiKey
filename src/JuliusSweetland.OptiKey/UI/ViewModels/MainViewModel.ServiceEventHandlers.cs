@@ -441,6 +441,12 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                                         Keyboard = new WebBrowsing();
                                         break;
 
+                                    case "JuliusSweetland.OptiKey.UI.ViewModels.Keyboards.DJController":
+                                        Settings.Default.UsingCommuniKateKeyboardLayout = Settings.Default.UseCommuniKateKeyboardLayoutByDefault;
+                                        Log.Info("Changing keyboard back to DJ Controller.");
+                                        Keyboard = new DJController();
+                                        break;
+
                                     default:
                                         if (string.IsNullOrEmpty(Settings.Default.CommuniKateKeyboardCurrentContext))
                                         {
@@ -2188,6 +2194,11 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                 case FunctionKeys.WebBrowsingKeyboard:
                     Log.Info("Changing keyboard to WebBrowsing.");
                     Keyboard = new WebBrowsing();
+                    break;
+
+                case FunctionKeys.DJControllerKeyboard:
+                    Log.Info("Changing keyboard to DJ Controller.");
+                    Keyboard = new DJController();
                     break;
 
                 case FunctionKeys.YesQuestionResult:

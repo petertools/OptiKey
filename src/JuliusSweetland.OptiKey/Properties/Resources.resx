@@ -1879,6 +1879,10 @@ Search</value>
     <value>Web
 Browsing</value>
   </data>
+  <data name="DJ_CONTROLLER_SPLIT_WITH_NEWLINE" xml:space="preserve">
+    <value>DJ
+Controller</value>
+  </data>
   <data name="MARYTTS_ENABLED_LABEL" xml:space="preserve">
     <value>Use MaryTTS speech synthesizer?</value>
   </data>
@@ -2212,5 +2216,8 @@ Française
   </data>
   <data name="PRESAGE_NUMBER_OF_SUGGESTIONS_LABEL" xml:space="preserve">
     <value>Number of Presage suggestions to show:</value>
+  </data>
+  <data name="DJ_CONTROLLER_LAYOUT" xml:space="preserve">
+    <value>DJ Controller</value>
   </data>
 </root>

@@ -1184,6 +1184,25 @@ namespace JuliusSweetland.OptiKey.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DJ Controller.
+        /// </summary>
+        public static string DJ_CONTROLLER_LAYOUT {
+            get {
+                return ResourceManager.GetString("DJ_CONTROLLER_LAYOUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DJ
+        ///Controller.
+        /// </summary>
+        public static string DJ_CONTROLLER_SPLIT_WITH_NEWLINE {
+            get {
+                return ResourceManager.GetString("DJ_CONTROLLER_SPLIT_WITH_NEWLINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do at current location....
         /// </summary>
         public static string DO_AT_CURRENT_LOCATION {

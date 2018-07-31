@@ -227,6 +227,7 @@
         ToggleCaseOfPreviousCharacter,
         TurkishTurkey,
         WebBrowsingKeyboard,
+        DJControllerKeyboard,
         YesQuestionResult
     }
 }

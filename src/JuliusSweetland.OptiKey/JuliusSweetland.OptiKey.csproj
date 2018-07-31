@@ -461,6 +461,7 @@
     <Compile Include="UI\ViewModels\ILookToScrollOverlayViewModel.cs" />
     <Compile Include="UI\ViewModels\Keyboards\Alpha2.cs" />
     <Compile Include="UI\ViewModels\Keyboards\CommuniKate.cs" />
+    <Compile Include="UI\ViewModels\Keyboards\DJController.cs" />
     <Compile Include="UI\ViewModels\Keyboards\Voice.cs" />
     <Compile Include="UI\ViewModels\Keyboards\WebBrowsing.cs" />
     <Compile Include="UI\ViewModels\Keyboards\SimplifiedConversationAlpha.cs" />
@@ -1194,6 +1195,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Views\Keyboards\Common\ConversationConfirm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Views\Keyboards\Common\DJController.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

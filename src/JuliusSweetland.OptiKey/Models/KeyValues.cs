@@ -249,6 +249,7 @@ namespace JuliusSweetland.OptiKey.Models
         public static readonly KeyValue ToggleCaseOfPreviousCharacterKey = new KeyValue(FunctionKeys.ToggleCaseOfPreviousCharacter);
         public static readonly KeyValue TurkishTurkeyKey = new KeyValue(FunctionKeys.TurkishTurkey);
         public static readonly KeyValue WebBrowsingKeyboardKey = new KeyValue(FunctionKeys.WebBrowsingKeyboard);
+        public static readonly KeyValue DJControllerKeyboardKey = new KeyValue(FunctionKeys.DJControllerKeyboard);
         public static readonly KeyValue YesQuestionResultKey = new KeyValue(FunctionKeys.YesQuestionResult);
 
         private static readonly Dictionary<Languages, List<KeyValue>> multiKeySelectionKeys;

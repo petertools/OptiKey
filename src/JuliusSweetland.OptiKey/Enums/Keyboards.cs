@@ -21,6 +21,7 @@
         NumericAndSymbols3,
         PhysicalKeys,
         SizeAndPosition,
-        WebBrowsing
+        WebBrowsing,
+        DJController
     }
 }

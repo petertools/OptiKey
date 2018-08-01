@@ -262,7 +262,7 @@
                       SharedSizeGroup="KeyWithSymbol"
                       Value="{x:Static models:KeyValues.MouseMoveAndLeftDoubleClickKey}"/>
         <controls:Key Grid.Row="5" Grid.Column="22" Grid.ColumnSpan="2"
-                      SymbolGeometry="{StaticResource BrowserIcon}"
+                      SymbolGeometry="{StaticResource DJIcon}"
                       Text="{x:Static resx:Resources.DJ_CONTROLLER_SPLIT_WITH_NEWLINE}"
                       SharedSizeGroup="KeyWithSymbol"
                       Value="{x:Static models:KeyValues.DJControllerKeyboardKey}"/>

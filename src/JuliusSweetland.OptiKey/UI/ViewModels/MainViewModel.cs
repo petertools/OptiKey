@@ -113,6 +113,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
 
         #region Properties
 
+        public IMIDIService MIDService { get { return midiService; } }
         public IInputService InputService { get { return inputService; } }
         public ICapturingStateManager CapturingStateManager { get { return capturingStateManager; } }
         public IKeyboardOutputService KeyboardOutputService { get { return keyboardOutputService; } }

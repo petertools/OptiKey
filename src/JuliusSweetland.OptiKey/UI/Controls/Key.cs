@@ -10,6 +10,7 @@ using System.Windows.Media;
 using JuliusSweetland.OptiKey.Enums;
 using JuliusSweetland.OptiKey.Extensions;
 using JuliusSweetland.OptiKey.Models;
+using JuliusSweetland.OptiKey.Services;
 using JuliusSweetland.OptiKey.Properties;
 using JuliusSweetland.OptiKey.UI.Utilities;
 using JuliusSweetland.OptiKey.UI.ViewModels;
@@ -125,8 +126,26 @@ namespace JuliusSweetland.OptiKey.UI.Controls
                     }
                 });
             onUnloaded.Add(keySelectionSubscription);
+
+            // Connect to MIDI service if necessary
+            if (Value != null && Value.String != null)
+            {
+                if (MIDIMessages.IsMIDIMessage(Value.String))
+                {
+                    if (MIDIMessages.IsCC(Value.String))
+                    {
+                        Byte first = MIDIMessages.GetFirstByte(Value.String);
+                        (mainViewModel.MIDService as MIDIService).CC[first] += onMIDIMessage;
+                    }
+                }
+            }
         }
-        
+
+        private void onMIDIMessage(object sender, Byte second)
+        {
+            Dispatcher.Invoke((Action<byte>) ((s) => { Console.WriteLine(Value.String + " = " + s); }), second);
+        }
+
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             if (onUnloaded != null

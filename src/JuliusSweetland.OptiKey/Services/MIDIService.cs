@@ -15,6 +15,29 @@ using NAudio.Midi;
 
 namespace JuliusSweetland.OptiKey.Services
 {
+    public class MIDIMessageEvent
+    {
+        protected event EventHandler<Byte> eventDelegate;
+
+        public void Dispatch(Byte value)
+        {
+            if (eventDelegate != null)
+                eventDelegate(this, value);
+        }
+
+        public static MIDIMessageEvent operator +(MIDIMessageEvent Message, EventHandler<Byte> Delegate)
+        {
+            Message.eventDelegate += Delegate;
+            return Message;
+        }
+
+        public static MIDIMessageEvent operator -(MIDIMessageEvent Message, EventHandler<Byte> Delegate)
+        {
+            Message.eventDelegate -= Delegate;
+            return Message;
+        }
+    }
+
     public class MIDIService : IMIDIService
     {
         private int selectedInputDevice = -1;
@@ -33,6 +56,8 @@ namespace JuliusSweetland.OptiKey.Services
                 {
                     selectedInputDevice = value;
                     midiInputDevice = new MidiIn(selectedInputDevice);
+                    midiInputDevice.MessageReceived += midiIn_MessageReceived;
+                    midiInputDevice.Start();
                 }
             }
         }
@@ -61,12 +86,20 @@ namespace JuliusSweetland.OptiKey.Services
 
         public event EventHandler<Exception> Error;
 
+        public MIDIMessageEvent[] CC = new MIDIMessageEvent[128];
+        public MIDIMessageEvent[] Note = new MIDIMessageEvent[128];
+
         #endregion
 
         #region Ctor
 
         public MIDIService()
         {
+            for (int i = 0; i < 128; i++)
+            {
+                CC[i] = new MIDIMessageEvent();
+                Note[i] = new MIDIMessageEvent();
+            }
         }
 
         #endregion
@@ -108,6 +141,32 @@ namespace JuliusSweetland.OptiKey.Services
             if (Error != null)
             {
                 Error(sender, ex);
+            }
+        }
+
+        void midiIn_MessageReceived(object sender, MidiInMessageEventArgs e)
+        {
+            Console.WriteLine(String.Format("Time {0} Message 0x{1:X8} Event {2}", e.Timestamp, e.RawMessage, e.MidiEvent));
+
+            Byte first = Convert.ToByte((e.RawMessage >> 8) & 0xFF);
+            Byte second = Convert.ToByte((e.RawMessage >> 16) & 0xFF);
+
+            switch (e.MidiEvent.CommandCode)
+            {
+                case MidiCommandCode.ControlChange:
+                    CC[first].Dispatch(second);
+                    break;
+
+                case MidiCommandCode.NoteOn:
+                    Note[first].Dispatch(second);
+                    break;
+
+                case MidiCommandCode.NoteOff:
+                    Note[first].Dispatch(0);
+                    break;
+
+                default:
+                    break;
             }
         }
 

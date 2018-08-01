@@ -47,11 +47,11 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <controls:MIDIKey Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+        <controls:Key Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                       SymbolGeometry="{StaticResource BrowserHomeIcon}"
                       Text="{x:Static resx:Resources.BROWSER_HOME_SPLIT_WITH_NEWLINE}"
                       SharedSizeGroup="KeyWithSymbol"
-                      Value="{x:Static models:MIDIMessages.Message01}"/>
+                      Value="Ch. 1 CC 12"/>
         <controls:Key Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"
                       SymbolGeometry="{StaticResource BrowserSearchIcon}"
                       Text="{x:Static resx:Resources.BROWSER_SEARCH_SPLIT_WITH_NEWLINE}"

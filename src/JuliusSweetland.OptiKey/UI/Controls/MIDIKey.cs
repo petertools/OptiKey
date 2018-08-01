@@ -18,6 +18,8 @@ namespace JuliusSweetland.OptiKey.UI.Controls
 {
     public class MIDIKey : Key
     {
-
+        public MIDIKey() : base()
+        {
+        }
     }
 }

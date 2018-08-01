@@ -2328,7 +2328,14 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
 
         private void SendMIDIMessage(string message)
         {
-            midiService.SendMessage(1, 1, 1);
+            if (MIDIMessages.IsMIDIMessage(message))
+            {
+                Byte channel = MIDIMessages.GetChannel(message);
+                Byte first = MIDIMessages.GetFirstByte(message);
+                midiService.SendMessage(channel, first, 127);
+                Thread.Sleep(100);
+                midiService.SendMessage(channel, first, 0);
+            }
         }
 
         private void ShowMore()

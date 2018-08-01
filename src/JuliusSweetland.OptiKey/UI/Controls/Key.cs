@@ -39,6 +39,15 @@ namespace JuliusSweetland.OptiKey.UI.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
+            // Connect to MIDI service if necessary
+            if (Value != null && Value.String != null)
+            {
+                if (MIDIMessages.IsMIDIMessage(Value.String))
+                {
+                    Value = new KeyValue(FunctionKeys.MIDIMessage, Value.String);
+                }
+            }
+
             onUnloaded = new CompositeDisposable();
 
             var keyboardHost = VisualAndLogicalTreeHelper.FindVisualParent<KeyboardHost>(this);
@@ -130,7 +139,7 @@ namespace JuliusSweetland.OptiKey.UI.Controls
             // Connect to MIDI service if necessary
             if (Value != null && Value.String != null)
             {
-                if (MIDIMessages.IsMIDIMessage(Value.String))
+                if (Value.FunctionKey == FunctionKeys.MIDIMessage && MIDIMessages.IsMIDIMessage(Value.String))
                 {
                     if (MIDIMessages.IsCC(Value.String))
                     {
@@ -143,7 +152,9 @@ namespace JuliusSweetland.OptiKey.UI.Controls
 
         private void onMIDIMessage(object sender, Byte second)
         {
-            Dispatcher.Invoke((Action<byte>) ((s) => { Console.WriteLine(Value.String + " = " + s); }), second);
+            Dispatcher.Invoke((Action<byte>) ((s) => {
+                SetValue(BackgroundColourOverrideProperty, s > 64 ? Brushes.Green : Brushes.Gray);
+            }), second);
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)

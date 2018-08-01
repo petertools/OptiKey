@@ -130,8 +130,8 @@ namespace JuliusSweetland.OptiKey.Services
         {
             if (midiOutputDevice != null)
             {
-                var noteOnEvent = new NoteOnEvent(0, channel, first, second, 50);
-                midiOutputDevice.Send(noteOnEvent.GetAsShortMessage());
+                var onEvent = new ControlChangeEvent(0, channel, (MidiController) first, second);
+                midiOutputDevice.Send(onEvent.GetAsShortMessage());
             }
         }
 

@@ -50,5 +50,18 @@ namespace JuliusSweetland.OptiKey.Models
             else
                 return 0;
         }
+
+        internal static byte GetChannel(string value)
+        {
+            Match matchCC = Regex.Match(value, @"Ch\. ([0-9]+) CC ([0-9]+)", RegexOptions.IgnoreCase);
+            Match matchNote = Regex.Match(value, @"Ch\.([0-9]+) Note ([A-G][#]?)([0-9])", RegexOptions.IgnoreCase);
+
+            if (matchCC.Success)
+                return Convert.ToByte(matchCC.Groups[1].Value);
+            else if (matchNote.Success)
+                return Convert.ToByte(matchNote.Groups[1].Value);
+            else
+                throw new ArgumentException();
+        }
     }
 }

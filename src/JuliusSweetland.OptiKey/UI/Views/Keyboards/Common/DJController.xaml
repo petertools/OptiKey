@@ -47,7 +47,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <controls:Key Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+        <controls:MIDIKey Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                       SymbolGeometry="{StaticResource BrowserHomeIcon}"
                       Text="{x:Static resx:Resources.BROWSER_HOME_SPLIT_WITH_NEWLINE}"
                       SharedSizeGroup="KeyWithSymbol"

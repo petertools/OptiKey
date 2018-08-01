@@ -34,7 +34,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Input Device" VerticalAlignment="Center" Margin="5" Grid.ColumnSpan="2" />
                     <ComboBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"
                               ItemsSource="{Binding InputDevices}"
-                              SelectedValue="{Binding InputDevice, Mode=TwoWay}" />
+                              SelectedIndex="{Binding InputDeviceIndex, Mode=TwoWay}" />
 
 
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Output Device" 
@@ -42,7 +42,7 @@
 
                     <ComboBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
                               ItemsSource="{Binding OutputDevices}"
-                              SelectedValue="{Binding OutputDevice, Mode=TwoWay}" />
+                              SelectedIndex="{Binding OutputDeviceIndex, Mode=TwoWay}" />
                 </Grid>
             </GroupBox>
         </Grid>

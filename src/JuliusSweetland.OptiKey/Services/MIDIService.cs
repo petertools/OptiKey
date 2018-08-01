@@ -95,8 +95,11 @@ namespace JuliusSweetland.OptiKey.Services
 
         public void SendMessage(Byte channel, Byte first, Byte second)
         {
-            var noteOnEvent = new NoteOnEvent(0, channel, first, second, 50);
-            midiOutputDevice.Send(noteOnEvent.GetAsShortMessage());
+            if (midiOutputDevice != null)
+            {
+                var noteOnEvent = new NoteOnEvent(0, channel, first, second, 50);
+                midiOutputDevice.Send(noteOnEvent.GetAsShortMessage());
+            }
         }
 
         private void PublishError(object sender, Exception ex)

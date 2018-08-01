@@ -12,14 +12,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels.Management
 {
     public class MIDIViewModel : BindableBase
     {
-        #region Private Member Vars
-
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        private const string ExpectedMaryTTSLocationSuffix = @"\bin\marytts-server.bat";
-
         private IMIDIService midiService;
-
-        #endregion
         
         #region Ctor
 
@@ -44,31 +37,19 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels.Management
             get { return midiService.GetAvailableOutputDevices(); }
         }
 
-        private string inputDevice;
-        public string InputDevice
+        private int inputDeviceIndex;
+        public int InputDeviceIndex
         {
-            get { return midiService.SelectedInputDevice != -1 ? InputDevices[midiService.SelectedInputDevice] : ""; }
-            set { midiService.SelectedInputDevice = InputDevices.IndexOf(value); }
+            get { return inputDeviceIndex; }
+            set { SetProperty(ref inputDeviceIndex, value); }
         }
 
-        private string outputDevice;
-        public string OutputDevice
+        private int outputDeviceIndex;
+        public int OutputDeviceIndex
         {
-            get { return midiService.SelectedOutputDevice != -1 ? OutputDevices[midiService.SelectedOutputDevice] : ""; }
-            set { midiService.SelectedOutputDevice = OutputDevices.IndexOf(value); }
+            get { return outputDeviceIndex; }
+            set { SetProperty(ref outputDeviceIndex, value); }
         }
-
-        public DelegateCommand InfoSoundPlayCommand { get; private set; }
-        public DelegateCommand KeySelectionSoundPlayCommand { get; private set; }
-        public DelegateCommand ErrorSoundPlayCommand { get; private set; }
-        public DelegateCommand AttentionSoundPlayCommand { get; private set; }
-        public DelegateCommand MultiKeySelectionCaptureStartSoundPlayCommand { get; private set; }
-        public DelegateCommand MultiKeySelectionCaptureEndSoundPlayCommand { get; private set; }
-        public DelegateCommand MouseClickSoundPlayCommand { get; private set; }
-        public DelegateCommand MouseDownSoundPlayCommand { get; private set; }
-        public DelegateCommand MouseUpSoundPlayCommand { get; private set; }
-        public DelegateCommand MouseDoubleClickSoundPlayCommand { get; private set; }
-        public DelegateCommand MouseScrollSoundPlayCommand { get; private set; }
         
         #endregion
         
@@ -76,11 +57,14 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels.Management
 
         private void Load()
         {
-
+            inputDeviceIndex = midiService.SelectedInputDevice;
+            outputDeviceIndex = midiService.SelectedOutputDevice;
         }
 
         public void ApplyChanges()
         {
+            midiService.SelectedInputDevice = inputDeviceIndex;
+            midiService.SelectedOutputDevice = outputDeviceIndex;
         }
 
         #endregion
